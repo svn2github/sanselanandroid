@@ -28,17 +28,25 @@ public class FieldTypeASCII extends FieldType
 
 	public Object getSimpleValue(TiffField entry) 
 	{
-		return new String(getRawBytes(entry));
+		final byte[] rawBytes = getRawBytes(entry);
+		return new String(rawBytes, 0, rawBytes.length-1); // strip '\0' character
 	}
 
 	public byte[] writeData(Object o, int byteOrder) throws ImageWriteException
 	{
-		if (o instanceof byte[])
-			return (byte[]) o;
-		else if (o instanceof String)
-			return ((String) o).getBytes();
+		final byte[] originalArray;
+		if (o instanceof byte[]) {
+			originalArray = (byte[])o;
+		}
+		else if (o instanceof String) {
+			originalArray = ((String)o).getBytes();
+		}
 		else
 			throw new ImageWriteException("Unknown data type: " + o);
+
+		final byte[] retVal = new byte[originalArray.length+1]; // make sure '\0' char is added.
+		System.arraycopy(originalArray, 0, retVal, 0, originalArray.length);
+		return retVal;
 	}
 
 }
