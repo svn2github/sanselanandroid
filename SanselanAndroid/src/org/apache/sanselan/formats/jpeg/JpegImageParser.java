@@ -35,16 +35,16 @@ import org.apache.sanselan.ImageParser;
 import org.apache.sanselan.ImageReadException;
 import org.apache.sanselan.common.IImageMetadata;
 import org.apache.sanselan.common.byteSources.ByteSource;
-import org.apache.sanselan.formats.jpeg.iptc.IPTCParser;
-import org.apache.sanselan.formats.jpeg.iptc.PhotoshopApp13Data;
-import org.apache.sanselan.formats.jpeg.segments.App13Segment;
+//import org.apache.sanselan.formats.jpeg.iptc.IPTCParser;
+//import org.apache.sanselan.formats.jpeg.iptc.PhotoshopApp13Data;
+//import org.apache.sanselan.formats.jpeg.segments.App13Segment;
 import org.apache.sanselan.formats.jpeg.segments.App2Segment;
 import org.apache.sanselan.formats.jpeg.segments.GenericSegment;
 import org.apache.sanselan.formats.jpeg.segments.JFIFSegment;
 import org.apache.sanselan.formats.jpeg.segments.SOFNSegment;
 import org.apache.sanselan.formats.jpeg.segments.Segment;
 import org.apache.sanselan.formats.jpeg.segments.UnknownSegment;
-import org.apache.sanselan.formats.jpeg.xmp.JpegXmpParser;
+//import org.apache.sanselan.formats.jpeg.xmp.JpegXmpParser;
 import org.apache.sanselan.formats.tiff.TiffField;
 import org.apache.sanselan.formats.tiff.TiffImageMetadata;
 import org.apache.sanselan.formats.tiff.TiffImageParser;
@@ -149,7 +149,7 @@ public class JpegImageParser extends ImageParser implements JpegConstants,
 				if (marker == JPEG_APP13_Marker)
 				{
 					// Debug.debug("app 13 segment data", segmentData.length);
-					result.add(new App13Segment(parser, marker, segmentData));
+//					result.add(new App13Segment(parser, marker, segmentData));
 				} else if (marker == JPEG_APP2_Marker)
 				{
 					result.add(new App2Segment(marker, segmentData));
@@ -311,8 +311,8 @@ public class JpegImageParser extends ImageParser implements JpegConstants,
 	{
 		TiffImageMetadata exif = getExifMetadata(byteSource, params);
 
-		JpegPhotoshopMetadata photoshop = getPhotoshopMetadata(byteSource,
-				params);
+		/*JpegPhotoshopMetadata*/Object photoshop = null; /* getPhotoshopMetadata(byteSource,
+				params);*/
 
 		if (null == exif && null == photoshop)
 			return null;
@@ -459,44 +459,44 @@ public class JpegImageParser extends ImageParser implements JpegConstants,
 	{
 		final boolean result[] = { false, };
 
-		JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
-			// return false to exit before reading image data.
-			public boolean beginSOS()
-			{
-				return false;
-			}
-
-			public void visitSOS(int marker, byte markerBytes[],
-					byte imageData[])
-			{
-			}
-
-			public boolean visitSOS(int marker, byte markerBytes[], InputStream is) {
-				return false;
-			}
-			
-			// return false to exit traversal.
-			public boolean visitSegment(int marker, byte markerBytes[],
-					int markerLength, byte markerLengthBytes[],
-					byte segmentData[]) throws ImageReadException, IOException
-			{
-				if (marker == 0xffd9)
-					return false;
-
-				if (marker == JPEG_APP13_Marker)
-				{
-					if (new IPTCParser().isPhotoshopJpegSegment(segmentData))
-					{
-						result[0] = true;
-						return false;
-					}
-				}
-
-				return true;
-			}
-		};
-
-		new JpegUtils().traverseJFIF(byteSource, visitor);
+//		JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
+//			// return false to exit before reading image data.
+//			public boolean beginSOS()
+//			{
+//				return false;
+//			}
+//
+//			public void visitSOS(int marker, byte markerBytes[],
+//					byte imageData[])
+//			{
+//			}
+//
+//			public boolean visitSOS(int marker, byte markerBytes[], InputStream is) {
+//				return false;
+//			}
+//			
+//			// return false to exit traversal.
+//			public boolean visitSegment(int marker, byte markerBytes[],
+//					int markerLength, byte markerLengthBytes[],
+//					byte segmentData[]) throws ImageReadException, IOException
+//			{
+//				if (marker == 0xffd9)
+//					return false;
+//
+//				if (marker == JPEG_APP13_Marker)
+//				{
+//					if (new IPTCParser().isPhotoshopJpegSegment(segmentData))
+//					{
+//						result[0] = true;
+//						return false;
+//					}
+//				}
+//
+//				return true;
+//			}
+//		};
+//
+//		new JpegUtils().traverseJFIF(byteSource, visitor);
 
 		return result[0];
 	}
@@ -506,43 +506,43 @@ public class JpegImageParser extends ImageParser implements JpegConstants,
 	{
 		final boolean result[] = { false, };
 
-		JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
-			// return false to exit before reading image data.
-			public boolean beginSOS()
-			{
-				return false;
-			}
-
-			public void visitSOS(int marker, byte markerBytes[],
-					byte imageData[])
-			{
-			}
-
-			public boolean visitSOS(int marker, byte markerBytes[], InputStream is) {
-				return false;
-			}
-			
-			// return false to exit traversal.
-			public boolean visitSegment(int marker, byte markerBytes[],
-					int markerLength, byte markerLengthBytes[],
-					byte segmentData[]) throws ImageReadException, IOException
-			{
-				if (marker == 0xffd9)
-					return false;
-
-				if (marker == JPEG_APP1_Marker)
-				{
-					if (new JpegXmpParser().isXmpJpegSegment(segmentData))
-					{
-						result[0] = true;
-						return false;
-					}
-				}
-
-				return true;
-			}
-		};
-		new JpegUtils().traverseJFIF(byteSource, visitor);
+//		JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
+//			// return false to exit before reading image data.
+//			public boolean beginSOS()
+//			{
+//				return false;
+//			}
+//
+//			public void visitSOS(int marker, byte markerBytes[],
+//					byte imageData[])
+//			{
+//			}
+//
+//			public boolean visitSOS(int marker, byte markerBytes[], InputStream is) {
+//				return false;
+//			}
+//			
+//			// return false to exit traversal.
+//			public boolean visitSegment(int marker, byte markerBytes[],
+//					int markerLength, byte markerLengthBytes[],
+//					byte segmentData[]) throws ImageReadException, IOException
+//			{
+//				if (marker == 0xffd9)
+//					return false;
+//
+//				if (marker == JPEG_APP1_Marker)
+//				{
+//					if (new JpegXmpParser().isXmpJpegSegment(segmentData))
+//					{
+//						result[0] = true;
+//						return false;
+//					}
+//				}
+//
+//				return true;
+//			}
+//		};
+//		new JpegUtils().traverseJFIF(byteSource, visitor);
 
 		return result[0];
 	}
@@ -560,82 +560,83 @@ public class JpegImageParser extends ImageParser implements JpegConstants,
 	public String getXmpXml(ByteSource byteSource, Map params)
 			throws ImageReadException, IOException
 	{
-
-		final List result = new ArrayList();
-
-		JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
-			// return false to exit before reading image data.
-			public boolean beginSOS()
-			{
-				return false;
-			}
-
-			public void visitSOS(int marker, byte markerBytes[],
-					byte imageData[])
-			{
-			}
-
-			public boolean visitSOS(int marker, byte markerBytes[], InputStream is) {
-				return false;
-			}
-			
-			// return false to exit traversal.
-			public boolean visitSegment(int marker, byte markerBytes[],
-					int markerLength, byte markerLengthBytes[],
-					byte segmentData[]) throws ImageReadException, IOException
-			{
-				if (marker == 0xffd9)
-					return false;
-
-				if (marker == JPEG_APP1_Marker)
-				{
-					if (new JpegXmpParser().isXmpJpegSegment(segmentData))
-					{
-						result.add(new JpegXmpParser()
-								.parseXmpJpegSegment(segmentData));
-						return false;
-					}
-				}
-
-				return true;
-			}
-		};
-		new JpegUtils().traverseJFIF(byteSource, visitor);
-
-		if (result.size() < 1)
-			return null;
-		if (result.size() > 1)
-			throw new ImageReadException(
-					"Jpeg file contains more than one XMP segment.");
-		return (String) result.get(0);
+		return null;
+//		final List result = new ArrayList();
+//
+//		JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
+//			// return false to exit before reading image data.
+//			public boolean beginSOS()
+//			{
+//				return false;
+//			}
+//
+//			public void visitSOS(int marker, byte markerBytes[],
+//					byte imageData[])
+//			{
+//			}
+//
+//			public boolean visitSOS(int marker, byte markerBytes[], InputStream is) {
+//				return false;
+//			}
+//			
+//			// return false to exit traversal.
+//			public boolean visitSegment(int marker, byte markerBytes[],
+//					int markerLength, byte markerLengthBytes[],
+//					byte segmentData[]) throws ImageReadException, IOException
+//			{
+//				if (marker == 0xffd9)
+//					return false;
+//
+//				if (marker == JPEG_APP1_Marker)
+//				{
+//					if (new JpegXmpParser().isXmpJpegSegment(segmentData))
+//					{
+//						result.add(new JpegXmpParser()
+//								.parseXmpJpegSegment(segmentData));
+//						return false;
+//					}
+//				}
+//
+//				return true;
+//			}
+//		};
+//		new JpegUtils().traverseJFIF(byteSource, visitor);
+//
+//		if (result.size() < 1)
+//			return null;
+//		if (result.size() > 1)
+//			throw new ImageReadException(
+//					"Jpeg file contains more than one XMP segment.");
+//		return (String) result.get(0);
 	}
 
-	public JpegPhotoshopMetadata getPhotoshopMetadata(ByteSource byteSource,
+	public /*JpegPhotoshopMetadata*/Object getPhotoshopMetadata(ByteSource byteSource,
 			Map params) throws ImageReadException, IOException
 	{
-		ArrayList segments = readSegments(byteSource,
-				new int[] { JPEG_APP13_Marker, }, false);
-
-		if ((segments == null) || (segments.size() < 1))
-			return null;
-
-		PhotoshopApp13Data photoshopApp13Data = null;
-
-		for (int i = 0; i < segments.size(); i++)
-		{
-			App13Segment segment = (App13Segment) segments.get(i);
-
-			PhotoshopApp13Data data = segment.parsePhotoshopSegment(params);
-			if (data != null && photoshopApp13Data != null)
-				throw new ImageReadException(
-						"Jpeg contains more than one Photoshop App13 segment.");
-
-			photoshopApp13Data = data;
-		}
-
-		if(null==photoshopApp13Data)
-			return null;
-		return new JpegPhotoshopMetadata(photoshopApp13Data);
+		return null;
+//		ArrayList segments = readSegments(byteSource,
+//				new int[] { JPEG_APP13_Marker, }, false);
+//
+//		if ((segments == null) || (segments.size() < 1))
+//			return null;
+//
+//		PhotoshopApp13Data photoshopApp13Data = null;
+//
+//		for (int i = 0; i < segments.size(); i++)
+//		{
+//			App13Segment segment = (App13Segment) segments.get(i);
+//
+//			PhotoshopApp13Data data = segment.parsePhotoshopSegment(params);
+//			if (data != null && photoshopApp13Data != null)
+//				throw new ImageReadException(
+//						"Jpeg contains more than one Photoshop App13 segment.");
+//
+//			photoshopApp13Data = data;
+//		}
+//
+//		if(null==photoshopApp13Data)
+//			return null;
+//		return new JpegPhotoshopMetadata(photoshopApp13Data);
 	}
 
 	public int[] getImageSize(ByteSource byteSource, Map params)

@@ -48,10 +48,6 @@ import org.apache.sanselan.formats.png.chunks.PNGChunkpHYs;
 import org.apache.sanselan.formats.png.chunks.PNGChunktEXt;
 import org.apache.sanselan.formats.png.chunks.PNGChunkzTXt;
 import org.apache.sanselan.formats.png.chunks.PNGTextChunk;
-import org.apache.sanselan.formats.transparencyfilters.TransparencyFilter;
-import org.apache.sanselan.formats.transparencyfilters.TransparencyFilterGrayscale;
-import org.apache.sanselan.formats.transparencyfilters.TransparencyFilterIndexedColor;
-import org.apache.sanselan.formats.transparencyfilters.TransparencyFilterTrueColor;
 import org.apache.sanselan.util.Debug;
 
 public class PngImageParser extends ImageParser implements PngConstants
@@ -436,31 +432,31 @@ public class PngImageParser extends ImageParser implements PngConstants
 	// BinaryFileParser
 	// I may not have always preserved byte order correctly.
 
-	private TransparencyFilter getTransparencyFilter(int ColorType,
-			PNGChunk pngChunktRNS) throws ImageReadException, IOException
-	{
-		// this.printCharQuad("pngChunktRNS.ChunkType", pngChunktRNS.ChunkType);
-		// this.debugNumber("pngChunktRNS.Length", pngChunktRNS.Length);
-
-		switch (ColorType)
-		{
-		case COLOR_TYPE_GREYSCALE: // 1,2,4,8,16 Each pixel is a grayscale
-			// sample.
-			return new TransparencyFilterGrayscale(pngChunktRNS.bytes);
-		case COLOR_TYPE_TRUE_COLOR: // 8,16 Each pixel is an R,G,B triple.
-			return new TransparencyFilterTrueColor(pngChunktRNS.bytes);
-		case COLOR_TYPE_INDEXED_COLOR: // 1,2,4,8 Each pixel is a palette index;
-			return new TransparencyFilterIndexedColor(pngChunktRNS.bytes);
-		case COLOR_TYPE_GREYSCALE_WITH_ALPHA: // 8,16 Each pixel is a grayscale
-			// sample,
-		case COLOR_TYPE_TRUE_COLOR_WITH_ALPHA: // 8,16 Each pixel is an R,G,B
-			// triple,
-		default:
-			throw new ImageReadException(
-					"Simple Transparency not compatible with ColorType: "
-							+ ColorType);
-		}
-	}
+//	private TransparencyFilter getTransparencyFilter(int ColorType,
+//			PNGChunk pngChunktRNS) throws ImageReadException, IOException
+//	{
+//		// this.printCharQuad("pngChunktRNS.ChunkType", pngChunktRNS.ChunkType);
+//		// this.debugNumber("pngChunktRNS.Length", pngChunktRNS.Length);
+//
+//		switch (ColorType)
+//		{
+//		case COLOR_TYPE_GREYSCALE: // 1,2,4,8,16 Each pixel is a grayscale
+//			// sample.
+//			return new TransparencyFilterGrayscale(pngChunktRNS.bytes);
+//		case COLOR_TYPE_TRUE_COLOR: // 8,16 Each pixel is an R,G,B triple.
+//			return new TransparencyFilterTrueColor(pngChunktRNS.bytes);
+//		case COLOR_TYPE_INDEXED_COLOR: // 1,2,4,8 Each pixel is a palette index;
+//			return new TransparencyFilterIndexedColor(pngChunktRNS.bytes);
+//		case COLOR_TYPE_GREYSCALE_WITH_ALPHA: // 8,16 Each pixel is a grayscale
+//			// sample,
+//		case COLOR_TYPE_TRUE_COLOR_WITH_ALPHA: // 8,16 Each pixel is an R,G,B
+//			// triple,
+//		default:
+//			throw new ImageReadException(
+//					"Simple Transparency not compatible with ColorType: "
+//							+ ColorType);
+//		}
+//	}
 
 	public ImageInfo getImageInfo(ByteSource byteSource, Map params)
 			throws ImageReadException, IOException

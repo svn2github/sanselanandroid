@@ -65,11 +65,11 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            File which may contain an image.
 	 * @return true if the file has an image format file extension.
 	 */
-	public static boolean hasImageFileExtension(File file) {
-		if (!file.isFile())
-			return false;
-		return hasImageFileExtension(file.getName());
-	}
+//	public static boolean hasImageFileExtension(File file) {
+//		if (!file.isFile())
+//			return false;
+//		return hasImageFileExtension(file.getName());
+//	}
 
 	/**
 	 * Tries to guess whether a filename represents an image based on its file
@@ -83,23 +83,23 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            String representing name of file which may contain an image.
 	 * @return true if the filename has an image format file extension.
 	 */
-	public static boolean hasImageFileExtension(String filename) {
-		filename = filename.toLowerCase();
-
-		ImageParser imageParsers[] = ImageParser.getAllImageParsers();
-		for (int i = 0; i < imageParsers.length; i++) {
-			ImageParser imageParser = imageParsers[i];
-			String exts[] = imageParser.getAcceptedExtensions();
-
-			for (int j = 0; j < exts.length; j++) {
-				String ext = exts[j];
-				if (filename.endsWith(ext.toLowerCase()))
-					return true;
-			}
-		}
-
-		return false;
-	}
+//	public static boolean hasImageFileExtension(String filename) {
+//		filename = filename.toLowerCase();
+//
+//		ImageParser imageParsers[] = ImageParser.getAllImageParsers();
+//		for (int i = 0; i < imageParsers.length; i++) {
+//			ImageParser imageParser = imageParsers[i];
+//			String exts[] = imageParser.getAcceptedExtensions();
+//
+//			for (int j = 0; j < exts.length; j++) {
+//				String ext = exts[j];
+//				if (filename.endsWith(ext.toLowerCase()))
+//					return true;
+//			}
+//		}
+//
+//		return false;
+//	}
 
 	/**
 	 * Tries to guess what the image type (if any) of data based on the file's
@@ -112,10 +112,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *         ImageFormat.IMAGE_FORMAT_UNKNOWN if the image type cannot be
 	 *         guessed.
 	 */
-	public static ImageFormat guessFormat(byte bytes[])
-			throws ImageReadException, IOException {
-		return guessFormat(new ByteSourceArray(bytes));
-	}
+//	public static ImageFormat guessFormat(byte bytes[])
+//			throws ImageReadException, IOException {
+//		return guessFormat(new ByteSourceArray(bytes));
+//	}
 
 	/**
 	 * Tries to guess what the image type (if any) of a file based on the file's
@@ -128,10 +128,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *         ImageFormat.IMAGE_FORMAT_UNKNOWN if the image type cannot be
 	 *         guessed.
 	 */
-	public static ImageFormat guessFormat(File file) throws ImageReadException,
-			IOException {
-		return guessFormat(new ByteSourceFile(file));
-	}
+//	public static ImageFormat guessFormat(File file) throws ImageReadException,
+//			IOException {
+//		return guessFormat(new ByteSourceFile(file));
+//	}
 
 	public static ImageFormat guessFormat(ByteSource byteSource)
 			throws ImageReadException, IOException {
@@ -431,10 +431,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(String filename, byte bytes[],
-			Map params) throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceArray(filename, bytes), params);
-	}
+//	public static ImageInfo getImageInfo(String filename, byte bytes[],
+//			Map params) throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceArray(filename, bytes), params);
+//	}
 
 	/**
 	 * Parses the "image info" of an image.
@@ -452,10 +452,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(String filename, byte bytes[])
-			throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceArray(filename, bytes), null);
-	}
+//	public static ImageInfo getImageInfo(String filename, byte bytes[])
+//			throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceArray(filename, bytes), null);
+//	}
 
 	/**
 	 * Parses the "image info" of an image.
@@ -473,10 +473,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(InputStream is, String filename)
-			throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceInputStream(is, filename), null);
-	}
+//	public static ImageInfo getImageInfo(InputStream is, String filename)
+//			throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceInputStream(is, filename), null);
+//	}
 
 	/**
 	 * Parses the "image info" of an image.
@@ -496,10 +496,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(InputStream is, String filename,
-			Map params) throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceInputStream(is, filename), params);
-	}
+//	public static ImageInfo getImageInfo(InputStream is, String filename,
+//			Map params) throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceInputStream(is, filename), params);
+//	}
 
 	/**
 	 * Parses the "image info" of an image.
@@ -515,10 +515,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(byte bytes[])
-			throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceArray(bytes), null);
-	}
+//	public static ImageInfo getImageInfo(byte bytes[])
+//			throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceArray(bytes), null);
+//	}
 
 	/**
 	 * Parses the "image info" of an image.
@@ -536,10 +536,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(byte bytes[], Map params)
-			throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceArray(bytes), params);
-	}
+//	public static ImageInfo getImageInfo(byte bytes[], Map params)
+//			throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceArray(bytes), params);
+//	}
 
 	/**
 	 * Parses the "image info" of an image file.
@@ -557,10 +557,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(File file, Map params)
-			throws ImageReadException, IOException {
-		return getImageInfo(new ByteSourceFile(file), params);
-	}
+//	public static ImageInfo getImageInfo(File file, Map params)
+//			throws ImageReadException, IOException {
+//		return getImageInfo(new ByteSourceFile(file), params);
+//	}
 
 	/**
 	 * Parses the "image info" of an image file.
@@ -576,19 +576,19 @@ public abstract class Sanselan implements SanselanConstants {
 	 * @return An instance of ImageInfo.
 	 * @see ImageInfo
 	 */
-	public static ImageInfo getImageInfo(File file) throws ImageReadException,
-			IOException {
-		return getImageInfo(file, null);
-	}
-
-	private static ImageInfo getImageInfo(ByteSource byteSource, Map params)
-			throws ImageReadException, IOException {
-		ImageParser imageParser = getImageParser(byteSource);
-
-		ImageInfo imageInfo = imageParser.getImageInfo(byteSource, params);
-
-		return imageInfo;
-	}
+//	public static ImageInfo getImageInfo(File file) throws ImageReadException,
+//			IOException {
+//		return getImageInfo(file, null);
+//	}
+//
+//	private static ImageInfo getImageInfo(ByteSource byteSource, Map params)
+//			throws ImageReadException, IOException {
+//		ImageParser imageParser = getImageParser(byteSource);
+//
+//		ImageInfo imageInfo = imageParser.getImageInfo(byteSource, params);
+//
+//		return imageInfo;
+//	}
 
 	private static final ImageParser getImageParser(ByteSource byteSource)
 			throws ImageReadException, IOException {
@@ -727,10 +727,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            Filename associated with image data (optional).
 	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
 	 */
-	public static String getXmpXml(InputStream is, String filename)
-			throws ImageReadException, IOException {
-		return getXmpXml(is, filename, null);
-	}
+//	public static String getXmpXml(InputStream is, String filename)
+//			throws ImageReadException, IOException {
+//		return getXmpXml(is, filename, null);
+//	}
 
 	/**
 	 * Determines the width and height of an image.
@@ -744,10 +744,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            Map of optional parameters, defined in SanselanConstants.
 	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
 	 */
-	public static String getXmpXml(InputStream is, String filename,
-			Map params) throws ImageReadException, IOException {
-		return getXmpXml(new ByteSourceInputStream(is, filename), params);
-	}
+//	public static String getXmpXml(InputStream is, String filename,
+//			Map params) throws ImageReadException, IOException {
+//		return getXmpXml(new ByteSourceInputStream(is, filename), params);
+//	}
 
 	/**
 	 * Determines the width and height of an image.
@@ -757,10 +757,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            Byte array containing an image file.
 	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
 	 */
-	public static String getXmpXml(byte bytes[])
-			throws ImageReadException, IOException {
-		return getXmpXml(bytes, null);
-	}
+//	public static String getXmpXml(byte bytes[])
+//			throws ImageReadException, IOException {
+//		return getXmpXml(bytes, null);
+//	}
 
 	/**
 	 * Determines the width and height of an image.
@@ -772,10 +772,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            Map of optional parameters, defined in SanselanConstants.
 	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
 	 */
-	public static String getXmpXml(byte bytes[], Map params)
-			throws ImageReadException, IOException {
-		return getXmpXml(new ByteSourceArray(bytes), params);
-	}
+//	public static String getXmpXml(byte bytes[], Map params)
+//			throws ImageReadException, IOException {
+//		return getXmpXml(new ByteSourceArray(bytes), params);
+//	}
 
 	/**
 	 * Extracts embedded XML metadata as XML string.
@@ -785,25 +785,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            File containing image data.
 	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
 	 */
-	public static String getXmpXml(File file) throws ImageReadException,
-			IOException {
-		return getXmpXml(file, null);
-	}
-
-	/**
-	 * Extracts embedded XML metadata as XML string.
-	 * <p>
-	 * 
-	 * @param file
-	 *            File containing image data.
-	 * @param params
-	 *            Map of optional parameters, defined in SanselanConstants.
-	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
-	 */
-	public static String getXmpXml(File file, Map params)
-			throws ImageReadException, IOException {
-		return getXmpXml(new ByteSourceFile(file), params);
-	}
+//	public static String getXmpXml(File file) throws ImageReadException,
+//			IOException {
+//		return getXmpXml(file, null);
+//	}
 
 	/**
 	 * Extracts embedded XML metadata as XML string.
@@ -815,12 +800,27 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            Map of optional parameters, defined in SanselanConstants.
 	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
 	 */
-	public static String getXmpXml(ByteSource byteSource, Map params)
-			throws ImageReadException, IOException {
-		ImageParser imageParser = getImageParser(byteSource);
+//	public static String getXmpXml(File file, Map params)
+//			throws ImageReadException, IOException {
+//		return getXmpXml(new ByteSourceFile(file), params);
+//	}
 
-		return imageParser.getXmpXml(byteSource, params);
-	}
+	/**
+	 * Extracts embedded XML metadata as XML string.
+	 * <p>
+	 * 
+	 * @param file
+	 *            File containing image data.
+	 * @param params
+	 *            Map of optional parameters, defined in SanselanConstants.
+	 * @return Xmp Xml as String, if present.  Otherwise, returns null..
+	 */
+//	public static String getXmpXml(ByteSource byteSource, Map params)
+//			throws ImageReadException, IOException {
+//		ImageParser imageParser = getImageParser(byteSource);
+//
+//		return imageParser.getXmpXml(byteSource, params);
+//	}
 
 	/**
 	 * Parses the metadata of an image. This metadata depends on the format of
@@ -987,10 +987,10 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            Byte array containing an image file.
 	 * @return A description of the image file's structure.
 	 */
-	public static String dumpImageFile(byte bytes[]) throws ImageReadException,
-			IOException {
-		return dumpImageFile(new ByteSourceArray(bytes));
-	}
+//	public static String dumpImageFile(byte bytes[]) throws ImageReadException,
+//			IOException {
+//		return dumpImageFile(new ByteSourceArray(bytes));
+//	}
 
 	/**
 	 * Returns a description of the image file's structure.
@@ -1002,34 +1002,34 @@ public abstract class Sanselan implements SanselanConstants {
 	 *            File containing image data.
 	 * @return A description of the image file's structure.
 	 */
-	public static String dumpImageFile(File file) throws ImageReadException,
-			IOException {
-		return dumpImageFile(new ByteSourceFile(file));
-	}
+//	public static String dumpImageFile(File file) throws ImageReadException,
+//			IOException {
+//		return dumpImageFile(new ByteSourceFile(file));
+//	}
 
-	private static String dumpImageFile(ByteSource byteSource)
-			throws ImageReadException, IOException {
-		ImageParser imageParser = getImageParser(byteSource);
-
-		return imageParser.dumpImageFile(byteSource);
-	}
-
-	public static FormatCompliance getFormatCompliance(byte bytes[])
-			throws ImageReadException, IOException {
-		return getFormatCompliance(new ByteSourceArray(bytes));
-	}
-
-	public static FormatCompliance getFormatCompliance(File file)
-			throws ImageReadException, IOException {
-		return getFormatCompliance(new ByteSourceFile(file));
-	}
-
-	private static FormatCompliance getFormatCompliance(ByteSource byteSource)
-			throws ImageReadException, IOException {
-		ImageParser imageParser = getImageParser(byteSource);
-
-		return imageParser.getFormatCompliance(byteSource);
-	}
+//	private static String dumpImageFile(ByteSource byteSource)
+//			throws ImageReadException, IOException {
+//		ImageParser imageParser = getImageParser(byteSource);
+//
+//		return imageParser.dumpImageFile(byteSource);
+//	}
+//
+//	public static FormatCompliance getFormatCompliance(byte bytes[])
+//			throws ImageReadException, IOException {
+//		return getFormatCompliance(new ByteSourceArray(bytes));
+//	}
+//
+//	public static FormatCompliance getFormatCompliance(File file)
+//			throws ImageReadException, IOException {
+//		return getFormatCompliance(new ByteSourceFile(file));
+//	}
+//
+//	private static FormatCompliance getFormatCompliance(ByteSource byteSource)
+//			throws ImageReadException, IOException {
+//		ImageParser imageParser = getImageParser(byteSource);
+//
+//		return imageParser.getFormatCompliance(byteSource);
+//	}
 
 	/**
 	 * Returns all images contained in an image.

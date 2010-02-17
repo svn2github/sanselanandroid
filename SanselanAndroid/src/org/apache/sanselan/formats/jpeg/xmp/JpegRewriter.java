@@ -28,7 +28,7 @@ import org.apache.sanselan.common.BinaryFileParser;
 import org.apache.sanselan.common.byteSources.ByteSource;
 import org.apache.sanselan.formats.jpeg.JpegConstants;
 import org.apache.sanselan.formats.jpeg.JpegUtils;
-import org.apache.sanselan.formats.jpeg.iptc.IPTCParser;
+//import org.apache.sanselan.formats.jpeg.iptc.IPTCParser;
 
 /**
  * Interface for Exif write/update/remove functionality for Jpeg/JFIF images.
@@ -130,11 +130,12 @@ public class JpegRewriter extends BinaryFileParser implements JpegConstants
 
 		public boolean isPhotoshopApp13Segment()
 		{
-			if (marker != JPEG_APP13_Marker)
-				return false;
-			if (!new IPTCParser().isPhotoshopJpegSegment(segmentData))
-				return false;
-			return true;
+			return false;
+//			if (marker != JPEG_APP13_Marker)
+//				return false;
+//			if (!new IPTCParser().isPhotoshopJpegSegment(segmentData))
+//				return false;
+//			return true;
 		}
 
 		public boolean isXmpSegment()

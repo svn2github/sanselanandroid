@@ -29,12 +29,12 @@ import org.apache.sanselan.formats.tiff.constants.TagInfo;
 import org.apache.sanselan.util.Debug;
 
 public class JpegImageMetadata implements IImageMetadata {
-	private final JpegPhotoshopMetadata photoshop;
+//	private final JpegPhotoshopMetadata photoshop;
 	private final TiffImageMetadata exif;
 
-	public JpegImageMetadata(final JpegPhotoshopMetadata photoshop,
+	public JpegImageMetadata(final /*JpegPhotoshopMetadata*/Object photoshop,
 			final TiffImageMetadata exif) {
-		this.photoshop = photoshop;
+//		this.photoshop = photoshop;
 		this.exif = exif;
 	}
 
@@ -42,9 +42,9 @@ public class JpegImageMetadata implements IImageMetadata {
 		return exif;
 	}
 
-	public JpegPhotoshopMetadata getPhotoshop() {
-		return photoshop;
-	}
+//	public JpegPhotoshopMetadata getPhotoshop() {
+//		return photoshop;
+//	}
 
 	public TiffField findEXIFValue(TagInfo tagInfo) {
 		ArrayList items = getItems();
@@ -97,8 +97,8 @@ public class JpegImageMetadata implements IImageMetadata {
 		if (null != exif)
 			result.addAll(exif.getItems());
 
-		if (null != photoshop)
-			result.addAll(photoshop.getItems());
+//		if (null != photoshop)
+//			result.addAll(photoshop.getItems());
 
 		return result;
 	}
@@ -128,13 +128,13 @@ public class JpegImageMetadata implements IImageMetadata {
 		result.append(newline);
 
 		result.append(prefix);
-		if (null == photoshop)
+//		if (null == photoshop)
 			result.append("No Photoshop (IPTC) metadata.");
-		else {
-			result.append("Photoshop (IPTC) metadata:");
-			result.append(newline);
-			result.append(photoshop.toString("\t"));
-		}
+//		else {
+//			result.append("Photoshop (IPTC) metadata:");
+//			result.append(newline);
+//			result.append(photoshop.toString("\t"));
+//		}
 
 		return result.toString();
 	}
