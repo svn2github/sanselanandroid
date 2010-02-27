@@ -33,7 +33,7 @@ import org.apache.sanselan.common.byteSources.ByteSourceFile;
 //import org.apache.sanselan.formats.gif.GifImageParser;
 //import org.apache.sanselan.formats.ico.IcoImageParser;
 import org.apache.sanselan.formats.jpeg.JpegImageParser;
-import org.apache.sanselan.formats.png.PngImageParser;
+//import org.apache.sanselan.formats.png.PngImageParser;
 //import org.apache.sanselan.formats.pnm.PNMImageParser;
 //import org.apache.sanselan.formats.psd.PsdImageParser;
 import org.apache.sanselan.formats.tiff.TiffImageParser;
@@ -45,7 +45,7 @@ public abstract class ImageParser extends BinaryFileParser implements
 	public static final ImageParser[] getAllImageParsers()
 	{
 		ImageParser result[] = { new JpegImageParser(), new TiffImageParser(),
-				new PngImageParser() 
+//				new PngImageParser() 
 //				new BmpImageParser(),
 //				new GifImageParser(), new PsdImageParser(),
 //				new PNMImageParser(), new IcoImageParser(),

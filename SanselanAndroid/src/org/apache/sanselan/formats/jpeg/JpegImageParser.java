@@ -62,7 +62,7 @@ public class JpegImageParser extends ImageParser implements JpegConstants,
 
 	protected ImageFormat[] getAcceptedTypes()
 	{
-		return new ImageFormat[] { ImageFormat.IMAGE_FORMAT_JPEG, //
+		return new ImageFormat[] { ImageFormat.IMAGE_FORMAT_JPEG //
 		};
 	}
 
