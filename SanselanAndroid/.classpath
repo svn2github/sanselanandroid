@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry excluding="org/apache/sanselan/color/|org/apache/sanselan/formats/bmp/|org/apache/sanselan/formats/gif/|org/apache/sanselan/formats/transparencyfilters/|org/apache/sanselan/formats/jpeg/iptc/|org/apache/sanselan/formats/jpeg/JpegPhotoshopMetadata.java|org/apache/sanselan/formats/jpeg/segments/App13Segment.java|org/apache/sanselan/formats/jpeg/xmp/" kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/android-sdk-windows/platforms/android-1.6/android.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
